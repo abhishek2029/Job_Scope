@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Jobs Aggregator - Find Your Dream Tech Role</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                <span>Live Job Listings</span>
+            </div>
+            <h1 class="hero-title">
+                Find Your Next <span class="gradient-text">Tech Role</span>
+            </h1>
+            <p class="hero-subtitle">
+                Discover opportunities in Solutions Architecture, Sales Engineering, and Technical Consulting
+            </p>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalJobs">40+</div>
+                    <div class="stat-label">Active Jobs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$120K-$200K</div>
+                    <div class="stat-label">Salary Range</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Job Categories</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- FAANG Quick Links -->
+        <div class="faang-section">
+            <h3>Top Tech Companies</h3>
+            <div class="faang-links">
+                <a href="https://www.amazon.jobs/" target="_blank" class="faang-link">
+                    <span class="company-icon">🟠</span>
+                    <span>Amazon</span>
+                </a>
+                <a href="https://careers.google.com/" target="_blank" class="faang-link">
+                    <span class="company-icon">🔵</span>
+                    <span>Google</span>
+                </a>
+                <a href="https://www.metacareers.com/" target="_blank" class="faang-link">
+                    <span class="company-icon">🔵</span>
+                    <span>Meta</span>
+                </a>
+                <a href="https://jobs.apple.com/" target="_blank" class="faang-link">
+                    <span class="company-icon">⚫</span>
+                    <span>Apple</span>
+                </a>
+                <a href="https://www.netflix.com/jobs" target="_blank" class="faang-link">
+                    <span class="company-icon">🔴</span>
+                    <span>Netflix</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="filter-section"></div>
+            <div class="info-banner">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm1 15H9v-2h2v2zm0-4H9V5h2v6z" fill="currentColor"/>
+                </svg>
+                <span><strong>Top Tech Companies:</strong> Filter by company name, experience level (entry to principal), and job title. All jobs are US-based only!</span>
+            </div>
+            
+            <div class="search-wrapper">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <input type="text" id="searchInput" placeholder="Search by job title, company, or location..." />
+            </div>
+            
+            <div class="filter-buttons">
+                <button class="filter-chip active" data-filter="all">All Jobs</button>
+                <button class="filter-chip" data-filter="Solutions Architect">Solutions Architect</button>
+                <button class="filter-chip" data-filter="Sales Engineer">Sales Engineer</button>
+                <button class="filter-chip" data-filter="Solutions Engineer">Solutions Engineer</button>
+                <button class="filter-chip" data-filter="Technical Account Manager">TAM</button>
+            </div>
+            
+            <div class="filter-section">
+                <label for="experienceFilter">Experience Level:</label>
+                <select id="experienceFilter" class="experience-filter">
+                    <option value="">All Levels</option>
+                    <option value="entry">Entry Level</option>
+                    <option value="mid">Mid Level</option>
+                    <option value="senior">Senior</option>
+                    <option value="lead">Lead/Manager</option>
+                    <option value="principal">Principal/Staff</option>
+                </select>
+            </div>
+            
+            <div class="filter-section" style="margin-top: 16px;">
+                <label for="companyFilter">Company:</label>
+                <input type="text" id="companyFilter" class="experience-filter" placeholder="Filter by company name..." />
+            </div>
+
+            <div class="action-buttons">
+                <button id="refreshBtn" class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M14 8a6 6 0 1 1-1.76-4.24M14 2v4h-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Refresh
+                </button>
+                <button id="scrapeBtn" class="btn btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Scrape Real Jobs
+                </button>
+            </div>
+        </div>
+
+        <div id="status" class="status"></div>
+
+        <!-- Jobs Grid -->
+        <div id="jobsContainer" class="jobs-container">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Loading amazing opportunities...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Built with ❤️ for tech job seekers | Data sourced from LinkedIn</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
