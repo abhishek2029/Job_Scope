@@ -1,0 +1,15 @@
+### Quick Installation
+
+## 🚀 Getting Started
+
+### 1. Clone and Setup
+```bash
+# Clone the repository
+git clone https://github.com/YOUR_USERNAME/tech-jobs-aggregator.git
+cd tech-jobs-aggregator
+
+# Make startup script executable
+chmod +x start.sh
+
+# Start the application (installs dependencies automatically)
+./start.sh
